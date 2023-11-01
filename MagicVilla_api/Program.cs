@@ -1,5 +1,7 @@
 using MagicVilla_api;
 using MagicVilla_api.Datos;
+using MagicVilla_api.Repositorio;
+using MagicVilla_api.Repositorio.IRepositorio;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,8 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
-
+builder.Services.AddScoped<IVillaRepositorio, VillaRepositorio>();
+builder.Services.AddScoped<INumeroVillaRepositorio, NumeroVillaRepositorio>();
 //builder.Services.AddDbContext<ApplicationDbContex>(option =>
 //{
 //    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConection"));
